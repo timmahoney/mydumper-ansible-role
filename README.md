@@ -13,15 +13,18 @@ The role takes care of installing everything.
 Role Variables
 --------------
 
+```
 mydumper_major_version: "0.6"
 mydumper_minor_version: "0.6.2"
+```
 
 Example Playbook
 ----------------
-
+```
 - hosts: servers
   roles:
      - mydumper
+```
 
 License
 -------
