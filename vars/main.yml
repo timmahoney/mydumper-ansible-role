@@ -1,2 +1,12 @@
 ---
 # vars file for mydumper
+
+mydumper_package_requirements:
+- glib2-devel
+- mysql-devel
+- zlib-devel
+- pcre-devel
+- openssl-devel
+- cmake
+
+mydumper_download_url: https://launchpad.net/mydumper/{{ mydumper_major_version }}/{{ mydumper_minor_version }}/+download/mydumper-{{ mydumper_version }}.tar.gz

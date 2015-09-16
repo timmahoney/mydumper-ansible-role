@@ -1,2 +1,53 @@
 ---
 # tasks file for mydumper
+- name: Development Tools
+  sudo: yes
+  yum:
+    name: '@Development tools'
+    state: present
+  tags:
+  - mydumper
+
+- name: Package requirements for mydumper
+  sudo: yes
+  yum:
+    name: "{{ item }}"
+    state: present
+  with_items: "{{ mydumper_package_requirements }}"
+  tags:
+  - mydumper
+
+- name: Get MyDumper
+  sudo: yes
+  get_url:
+    dest: /opt/
+    url: "{{ mydumper_download_url }}"
+    validate_certs: no
+  tags:
+  - mydumper
+
+- name: Unpack MyDumper
+  sudo: yes
+  unarchive:
+    copy: no
+    dest: /opt/mydumper-{{ mydumper_minor_version }}/
+    group: vagrant
+    mode: 0755
+    owner: vagrant
+    src: /opt/mydumper-{{ mydumper_minor_version }}.tar.gz
+  tags:
+  - mydumper
+
+- name: CMake MyDumper
+  sudo: yes
+  shell: chdir=/opt/mydumper-{{ mydumper_minor_version }}/ cmake .
+  tags:
+  - mydumper
+  environment:
+    BUILD_DOCS: off
+
+- name: Make MyDumper
+  sudo: yes
+  shell: chdir=/opt/mydumper-{{ mydumper_minor_version }}/ make
+  tags:
+  - mydumper

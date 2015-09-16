@@ -1,2 +1,4 @@
 ---
 # defaults file for mydumper
+mydumper_major_version: "0.6"
+mydumper_minor_version: "0.6.2"
