@@ -30,7 +30,7 @@
   sudo: yes
   unarchive:
     copy: no
-    dest: /opt/mydumper-{{ mydumper_minor_version }}/
+    dest: /opt/
     group: vagrant
     mode: 0755
     owner: vagrant
@@ -49,5 +49,23 @@
 - name: Make MyDumper
   sudo: yes
   shell: chdir=/opt/mydumper-{{ mydumper_minor_version }}/ make
+  tags:
+  - mydumper
+
+- name: Link MyDumper executable to /bin directory
+  sudo: yes
+  file:
+    src: /opt/mydumper-{{ mydumper_minor_version }}/mydumper
+    dest: /bin/mydumper
+    state: link
+  tags:
+  - mydumper
+
+- name: Link MyLoader executable to /bin directory
+  sudo: yes
+  file:
+    src: /opt/mydumper-{{ mydumper_minor_version }}/myloader
+    dest: /bin/myloader
+    state: link
   tags:
   - mydumper

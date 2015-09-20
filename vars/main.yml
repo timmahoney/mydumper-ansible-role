@@ -9,4 +9,4 @@ mydumper_package_requirements:
 - openssl-devel
 - cmake
 
-mydumper_download_url: https://launchpad.net/mydumper/{{ mydumper_major_version }}/{{ mydumper_minor_version }}/+download/mydumper-{{ mydumper_version }}.tar.gz
+mydumper_download_url: https://launchpad.net/mydumper/{{ mydumper_major_version }}/{{ mydumper_minor_version }}/+download/mydumper-{{ mydumper_minor_version }}.tar.gz
